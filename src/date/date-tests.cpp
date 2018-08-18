@@ -103,8 +103,32 @@ TEST_CASE("Completely Different Are Unequal") {
 
 
 // Exercise 2.4
-// Provide tests for a new member function of the Date class
-// which will increase the date by one day.
+
+TEST_CASE("Increasing is Succesful When It does not Flow into a New Month/Year") {
+    auto date_1 = Date{28, Month::February, 2004};
+    date_1.increaseDate();
+    CHECK(date_1 == (Date{29, Month::February, 2004}));
+}
+
+TEST_CASE("Increasing is Succesful at The End of Feb-Leap Year") {
+    auto date_1 = Date{29, Month::February, 2004};
+    date_1.increaseDate();
+    CHECK(date_1 == (Date{1, Month::March, 2004}));
+}
+
+
+TEST_CASE("Increasing is Succesful When It Flows into a New Month, But not a new Year") {
+    auto date_1 = Date{31, Month::January, 2001};
+    date_1.increaseDate();
+    CHECK(date_1 == (Date{1, Month::February, 2001}));
+}
+
+TEST_CASE("Increasing is Succesful When It Flows into a new Year") {
+    auto date_1 = Date{31, Month::December, 2001};
+    date_1.increaseDate();
+    CHECK(date_1 == (Date{1, Month::January, 2002}));
+}
+
 
 
 // Exercise 2.5

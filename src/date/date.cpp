@@ -86,3 +86,31 @@ bool Date::operator==(const Date& rhs) const
 {
  return (day_==rhs.day()&&month_==rhs.month()&&year_==rhs.year());
 }
+
+void Date::increaseDate()
+{
+    
+    if(day_<daysInMonth())//not the end of a month
+    {
+        day_++;
+        return;
+    }
+    
+    if(month_!=Month::December)//not the end of the year
+    {
+        auto newMonth=static_cast<int>(month_);
+        month_=static_cast<Month>(++newMonth);
+        day_=1;
+        return;
+    }
+    
+    //the end of the year
+    month_=Month::January;
+    day_=1;
+    year_++;
+    return;
+    
+    
+    
+    
+}

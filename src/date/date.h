@@ -38,6 +38,7 @@ public:
 	// return true if it is a leap-year, false if not
 	bool isLeapYear () const;	
     bool operator==(const Date& rhs) const;
+    void increaseDate();
 
 private:
 	// return the number of days in the month_
