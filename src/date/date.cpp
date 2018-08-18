@@ -5,9 +5,20 @@
 
 Date::Date(int day,Month month,int year)
 {
-    day_=day;
     month_=month;
-    year_=year;
+    
+    if(year<0)
+        throw NonExistentYear();
+    
+     year_=year;
+     
+     
+    if(day<=0 ||day>daysInMonth() )
+    {   
+        throw NonExistentDay();
+    }
+    day_=day;
+   
 }
 
 int Date::day() const

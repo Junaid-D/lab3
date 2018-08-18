@@ -6,7 +6,8 @@
 #include <cassert>
 #include <iostream>
 using namespace std;
-
+class NonExistentDay{};
+class NonExistentYear{};
 enum class Month 
 {
 	January, 

@@ -32,6 +32,16 @@ TEST_CASE("Valid Date is initialised correctly") {
 
 
 // Exercise 2.2
+TEST_CASE("Creating Negative Year Throws Exception") {
+    CHECK_THROWS_AS((Date{1,Month::September,-2000}),NonExistentYear);
+}
+
+
+TEST_CASE("Creating Out Of Range Day Throws Exception") {
+    CHECK_THROWS_AS((Date{-4,Month::September,2000}),NonExistentDay);
+    CHECK_THROWS_AS((Date{29, Month::February, 2001}), NonExistentDay);
+    CHECK_NOTHROW((Date{29, Month::February, 2004}));// a leap year
+}
 
 
 // Exercise 2.3
