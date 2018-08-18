@@ -27,6 +27,8 @@ class Date
 {
 public:	
 	// return the day of the month
+    
+    Date(int day=0,Month month=Month::January,int year=2000);
 	int	day () const;
 	// return the month of the year
 	Month month () const;
