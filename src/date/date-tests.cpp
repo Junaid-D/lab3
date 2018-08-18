@@ -45,16 +45,61 @@ TEST_CASE("Creating Out Of Range Day Throws Exception") {
 
 
 // Exercise 2.3
-//TEST_CASE("Identical Dates are Equal") {
-//    auto date_1 = Date{1, Month::January, 2000};
-//    auto date_2 = Date{1, Month::January, 2000};
-//
-//    CHECK(date_1 == date_2);
-//}
+//the equality is expected to evaluate to false if any one of the three member variables is unequal
+TEST_CASE("Identical Dates are Equal") {
+    auto date_1 = Date{1, Month::January, 2000};
+    auto date_2 = Date{1, Month::January, 2000};
 
-// Supply at least three additional tests for
-// the equality operator here, to ensure that
-// it is working correctly.
+    CHECK(date_1 == date_2);
+}
+
+TEST_CASE("Differing Months Are Unequal") {
+    auto date_1 = Date{1, Month::February, 2000};
+    auto date_2 = Date{1, Month::January, 2000};
+
+    CHECK_FALSE(date_1 == date_2);
+}
+
+TEST_CASE("Differing Days Are Unequal") {
+    auto date_1 = Date{2, Month::January, 2000};
+    auto date_2 = Date{1, Month::January, 2000};
+
+    CHECK_FALSE(date_1 == date_2);
+}
+
+TEST_CASE("Differing Years Are Unequal") {
+    auto date_1 = Date{1, Month::January, 2001};
+    auto date_2 = Date{1, Month::January, 2000};
+
+    CHECK_FALSE(date_1 == date_2);
+}
+
+TEST_CASE("Differing Date and Month Are Unequal") {
+    auto date_1 = Date{1, Month::January, 2000};
+    auto date_2 = Date{2, Month::February, 2000};
+
+    CHECK_FALSE(date_1 == date_2);
+}
+
+TEST_CASE("Differing Date and Year Are Unequal") {
+    auto date_1 = Date{1, Month::January, 2000};
+    auto date_2 = Date{2, Month::January, 2001};
+
+    CHECK_FALSE(date_1 == date_2);
+}
+
+TEST_CASE("Differing Year and Month Are Unequal") {
+    auto date_1 = Date{1, Month::January, 2000};
+    auto date_2 = Date{1, Month::February, 2001};
+
+    CHECK_FALSE(date_1 == date_2);
+}
+TEST_CASE("Completely Different Are Unequal") {
+    auto date_1 = Date{2, Month::February, 2001};
+    auto date_2 = Date{1, Month::January, 2000};
+
+    CHECK_FALSE(date_1 == date_2);
+}
 
 
 // Exercise 2.4
