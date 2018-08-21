@@ -132,5 +132,36 @@ TEST_CASE("Increasing is Succesful When It Flows into a new Year") {
 
 
 // Exercise 2.5
-// Write tests for the new default constructor and the
-// setDefaultDate method.
+TEST_CASE("Default Date is 1, Month::January, 1900") {
+    auto def = Date{};
+    auto testDate=Date{1, Month::January, 1900};
+    CHECK(def==testDate);
+    // the == operator has already been tested
+}
+
+TEST_CASE("SetDefaultDate allows the default date to change") {
+    Date::setDefaultDate(1,Month::July,2008);
+    auto def = Date{};
+    CHECK(def==Date{1,Month::July,2008});
+}
+
+
+
+//test the exceptions thrown by setdefaultdate
+
+TEST_CASE("Setting Default Year as Negative throws Exception") {
+    CHECK_THROWS_AS(Date::setDefaultDate(1,Month::January,-1),NonExistentYear);
+}
+
+TEST_CASE("Setting Default Day as Out of Range Throws Exception") {
+    CHECK_THROWS_AS(Date::setDefaultDate(-4,Month::September,2000),NonExistentDay);
+    CHECK_THROWS_AS(Date::setDefaultDate(29, Month::February, 2001), NonExistentDay);
+    CHECK_NOTHROW(Date::setDefaultDate(29, Month::February, 2004));// a leap year
+}
+
+TEST_CASE("Creating a default, changing the default date, does not change the original") {
+   auto def1=Date{};
+   Date::setDefaultDate(1,Month::July,2008);
+   CHECK_FALSE(def1==(Date{1,Month::July,2008}));
+    
+}

@@ -29,7 +29,9 @@ class Date
 public:	
 	// return the day of the month
     
-    Date(int day=0,Month month=Month::January,int year=2000);
+    Date(int day,Month month,int year);
+    Date();
+    static void setDefaultDate(int day, Month month, int year);
 	int	day () const;
 	// return the month of the year
 	Month month () const;
@@ -47,6 +49,7 @@ private:
 	int	day_;
 	Month month_;
 	int	year_;
+    static Date default_;
 
 };
 

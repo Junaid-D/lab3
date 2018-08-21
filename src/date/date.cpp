@@ -3,6 +3,14 @@
 
 #include "date.h"
 
+Date Date::default_{1, Month::January, 1900};
+Date::Date()
+{
+    day_=default_.day();
+    month_=default_.month();
+    year_=default_.year();
+    //there is no need to perform error checking here- the unchanged default is valid
+}
 Date::Date(int day,Month month,int year)
 {
     month_=month;
@@ -20,6 +28,14 @@ Date::Date(int day,Month month,int year)
     day_=day;
    
 }
+
+void Date::setDefaultDate(int day, Month month, int year)
+{
+        default_=Date{day,month,year}; 
+        /*this is done instead of simply changing the attributes of default_
+         as to leverage the exceptions thrown by the constructor */
+}
+
 
 int Date::day() const
 {
